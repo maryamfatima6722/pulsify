@@ -1,0 +1,26 @@
+# important
+Python 3.12.6
+pip install pandas numpy scikit-learn
+pip install matplotlib seaborn 
+pip install numpy
+pip install jupyter
+pip install django
+
+# // model training
+# pip install joblib. I have used .pkl models
+pip install pickle-mixin
+
+
+# Create virtual environment. I created myenv.
+python -m venv venv 
+#  Activate that using  venv\Scripts\activate
+
+
+
+# version of libraries
+#pandas numpy=Version: 2.2.3 
+
+
+
+
+

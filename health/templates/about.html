@@ -1,0 +1,95 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block body %}
+
+<style>
+    .about-section {
+        padding: 60px 0;
+        background-color: #f7f7f7;
+    }
+    .about-section .title-section {
+        margin-bottom: 40px;
+    }
+    .about-section img {
+        width: 100%;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .about-section h6 {
+        color: #FF4C60;
+        margin-top: 20px;
+        font-size: 1.2em;
+    }
+    .about-section p {
+        color: #666;
+        line-height: 1.8;
+        margin-top: 20px;
+    }
+    .section-2 {
+        background-color: #FF4C60;
+        color: #fff;
+        padding: 50px 0;
+    }
+    .section-2 h5 {
+        font-size: 2em;
+    }
+    .section-2 ul {
+        font-size: 1.2em;
+        padding-left: 0;
+        list-style: none;
+    }
+    .section-2 ul li {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 0;
+    }
+    .section-2 ul li:not(:last-child) {
+        border-bottom: 1px solid #fff;
+    }
+</style>
+
+<section class="about-section py-5">
+    <div class="container py-xl-5 py-lg-3">
+        <div class="title-section mb-md-5 mb-4 text-center">
+            <h3 class="w3ls-title text-uppercase text-bl font-weight-bold">About Us</h3>
+            <hr/>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 mb-4">
+                <img src="{% static 'images/aboutheart.jfif' %}" alt="About Heart" class="img-fluid" />
+            </div>
+            <div class="col-lg-6">
+                <h6 class="subheading-w3ls text-uppercase text-bl mb-4">Predicting Presence of Heart Diseases using Machine Learning</h6>
+                <p>Machine Learning is used across many spheres around the world. The healthcare industry is no exception. Machine Learning can play an essential role in predicting presence/absence of locomotor disorders, heart diseases, and more. Such information, if predicted well in advance, can provide important insights to doctors who can then adapt their diagnosis and treatment per patient basis.</p>
+                <p>In this project, we worked on predicting potential heart diseases in people using machine learning algorithms. The algorithms included K Neighbors Classifier, Support Vector Classifier, Decision Tree Classifier, and Random Forest Classifier. The dataset has been taken from Kaggle. Our complete project is available at Heart Disease Prediction.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Opening Hours Section -->
+<div class="section-2">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-6 triple-sec p-5 text-center">
+                <h5 class="text-wh font-weight-bold">Opening Hours</h5>
+                <ul class="list-unstyled text-wh mt-4">
+                    <li class="clearfix py-3">
+                        <span class="float-left"> Monday - Friday </span>
+                        <div class="value float-right"> 8:00am - 7:00pm </div>
+                    </li>
+                    <li class="clearfix border-top border-bottom py-3">
+                        <span class="float-left"> Saturday </span>
+                        <div class="value float-right"> 11:00am - 1:00pm </div>
+                    </li>
+                    <li class="clearfix py-3">
+                        <span class="float-left"> Sunday </span>
+                        <div class="value float-right"> 11:00am - 1:00pm </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

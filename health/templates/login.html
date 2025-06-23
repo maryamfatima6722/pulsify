@@ -1,0 +1,60 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block body %}
+{% if error == "pat1" %}
+<script>
+    alert('Logged in successfully');
+    window.location="{% url 'patient_home' %}";
+</script>
+{% endif %}
+
+{% if error == "notmember" %}
+<script>
+    alert('Your information verification is pending. Please login after some time.');
+    window.location="{% url 'logout' %}";
+</script>
+{% endif %}
+{% if error == "pat2" %}
+<script>
+    alert('Logged in successfully');
+    window.location="{% url 'doctor_home' %}";
+</script>
+{% endif %}
+{% if not error %}
+<script>
+    alert('Register yourself as a patient or as a doctor');
+</script>
+{% endif %}
+
+<!-- Enhanced Login Section -->
+<section class="logins py-5 bg-light">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-lg-5">
+                <div class="card border-0 shadow">
+                    <div class="card-body">
+                        <h3 class="w3ls-title text-uppercase text-center font-weight-bold mb-4">Login Now</h3>
+                        <form action="" method="post" class="p-sm-3">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label class="font-weight-bold" for="username">Username</label>
+                                <input type="text" class="form-control" id="username" name="uname" placeholder="Enter Username" required>
+                                <small id="usernameHelp" class="form-text text-muted">We'll never share your details with anyone else.</small>
+                            </div>
+                            <div class="form-group">
+                                <label class="font-weight-bold" for="password">Password</label>
+                                <input type="password" class="form-control" id="password" name="pwd" placeholder="Enter Your Password" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-block">Login</button>
+                            <p class="text-center mt-3">
+                                <a href="{% url 'signup' %}" class="text-decoration-none">Incase you Don't have an Account? Register here</a>
+                            </p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- //Enhanced Login Section -->
+{% endblock %}

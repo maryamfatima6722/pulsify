@@ -1,0 +1,161 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block body %}
+<style>
+    body {
+        font-family: 'Nunito', sans-serif;
+    }
+    .form-container {
+        background-color: #ffffff;
+        padding: 2rem;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .form-container:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+    .btn-custom {
+        background-color: #007bff;
+        border-color: #007bff;
+        color: #ffffff;
+        border-radius: 50px;
+        padding: 10px 20px;
+        transition: background 0.3s, transform 0.3s;
+        width: 100%;
+        font-size: 1.1rem;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+    .btn-custom:hover {
+        background-color: #0056b3;
+        border-color: #0056b3;
+        transform: translateY(-2px);
+    }
+    .result-section {
+        background-color: #f8f9fa;
+        padding: 2rem;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        margin-top: 2rem;
+    }
+    .title-section h3 {
+        font-size: 2.5rem;
+        color: #343a40;
+        margin-bottom: 1rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+    .result-section h4 {
+        color: #28a745;
+    }
+    .form-group label {
+        font-weight: bold;
+        color: #495057;
+    }
+    .form-group small {
+        color: #6c757d;
+    }
+    .form-control {
+        border-radius: 50px;
+        padding: 10px 15px;
+        transition: box-shadow 0.3s;
+    }
+    .form-control:focus {
+        box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
+    }
+    .custom-select {
+        border-radius: 50px;
+        padding: 10px 15px;
+        transition: box-shadow 0.3s;
+    }
+    .custom-select:focus {
+        box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
+    }
+</style>
+
+<section class="logins py-5 bg-light">
+    <div class="container py-xl-5 py-lg-3">
+        <div class="title-section mb-md-5 mb-4 text-center">
+            <h3 class="w3ls-title text-uppercase text-dark font-weight-bold">Heart Disease Prediction</h3>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="form-container">
+                    <form method="POST" class="form">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            {{ form.age.label_tag }}
+                            {{ form.age }}
+                        </div>
+                        <div class="form-group">
+                            {{ form.gender.label_tag }}
+                            {{ form.gender }}
+                        </div>
+                        <div class="form-group">
+                            {{ form.height.label_tag }}
+                            {{ form.height }}
+                        </div>
+                        <div class="form-group">
+                            {{ form.weight.label_tag }}
+                            {{ form.weight }}
+                        </div>
+                        <div class="form-group">
+                            {{ form.systolic_bp.label_tag }}
+                            {{ form.systolic_bp }}
+                        </div>
+                        <div class="form-group">
+                            {{ form.diastolic_bp.label_tag }}
+                            {{ form.diastolic_bp }}
+                        </div>
+                        <div class="form-group">
+                            {{ form.cholesterol.label_tag }}
+                            {{ form.cholesterol }}
+                        </div>
+                        <div class="form-group">
+                            {{ form.glucose.label_tag }}
+                            {{ form.glucose }}
+                        </div>
+                        <div class="form-group">
+                            {{ form.smoking.label_tag }}
+                            {{ form.smoking }}
+                        </div>
+                        <div class="form-group">
+                            {{ form.alcohol_intake.label_tag }}
+                            {{ form.alcohol_intake }}
+                        </div>
+                        <div class="form-group">
+                            {{ form.physical_activity.label_tag }}
+                            {{ form.physical_activity }}
+                        </div>
+                        <button type="submit" class="btn btn-custom btn-block mt-3">Predict</button>
+                    </form>
+                </div>
+
+                {% if result %}
+                    <div class="result-section mt-4">
+                        <h4 class="text-center">Prediction: {{ result }}</h4>
+                        {% if result == 'Positive' %}
+                            <h5 class="mt-4">Recommended Tests:</h5>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">Electrocardiogram (ECG or EKG)</li>
+                                <li class="list-group-item">Echocardiogram</li>
+                                <li class="list-group-item">Exercise Stress Test (Treadmill Test)</li>
+                                <li class="list-group-item">Lipid Profile (Blood Test)</li>
+                                <li class="list-group-item">Fasting Blood Sugar Test (Blood Test)</li>
+                                <li class="list-group-item">Thallium Stress Test or Nuclear Stress Test</li>
+                                <li class="list-group-item">Cardiac Catheterization and Angiogram</li>
+                                <li class="list-group-item">Chest X-ray</li>
+                                <li class="list-group-item">Blood Pressure Measurement</li>
+                                <li class="list-group-item">General Physical Examination</li>
+                            </ul>
+                        {% endif %}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+

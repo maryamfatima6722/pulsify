@@ -1,0 +1,66 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block body %}
+
+<section class="logins py-5 bg-light">
+    <div class="container py-xl-5 py-lg-3">
+        <div class="title-section mb-md-5 mb-4">
+            <h3 class="w3ls-title text-uppercase text-dark font-weight-bold">Heart Prediction Output</h3>
+        </div>
+        <hr/>
+        <div class="login px-sm-12" style="width:100%">
+
+            <h1 class="text-center" style="color:red">Prediction Output</h1>
+            <hr>
+            <div class="text-center mt-4">
+                <p class="h3"><b>Accuracy (%) is:</b> {{ accuracy }}</p>
+                <p class="h5">
+                    <b>Result is:</b>
+                    {% if pred == "0" %}
+                    <span class="text-success">You are healthy.</span>
+                    {% else %}
+                    <span class="text-danger">You are Unhealthy, Seek Checkup from expert doctors in town.</span>
+                    {% endif %}
+                </p>
+            </div>
+        </div>
+        {% if pred != "0" %}
+        <div class="container-fluid mt-5">
+            <h2 align="center" style="font-weight:bold; color: #E6120E;">You may contact this Doctor</h2>
+            <hr>
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover mt-4">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>#</th>
+                            <th>Image</th>
+                            <th>Full Name</th>
+                            <th>Email</th>
+                            <th>Contact</th>
+                            <th>Address</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for i in doctor %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td><img src="{{ i.image.url }}" class="img-fluid" style="width:80px; height:90px;"></td>
+                            <td>{{ i.user.first_name }} {{ i.user.last_name }}</td>
+                            <td>{{ i.user.email }}</td>
+                            <td>{{ i.contact }}</td>
+                            <td>{{ i.address }}</td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="6" class="text-center">No Record Found.</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</section>
+
+{% endblock %}

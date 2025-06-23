@@ -1,0 +1,60 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block body %}
+
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-header">Doctor Registration Form</div>
+        <div class="card-body">
+          <form method="post" enctype="multipart/form-data" action="{% url 'DoctorAvailability' %}">
+            {% csrf_token %}
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" class="form-control" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" class="form-control" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone</label>
+              <input type="tel" class="form-control" id="phone" name="phone" required>
+            </div>
+            <div class="form-group">
+              <label for="address">Address</label>
+              <textarea class="form-control" id="address" name="address" rows="3" required></textarea>
+            </div>
+            <div class="form-group">
+              <label for="pic">Profile Picture</label>
+              <input type="file" class="form-control-file" id="pic" name="pic">
+            </div>
+            <div class="form-group">
+              <label for="speciality">Speciality</label>
+              <input type="text" class="form-control" id="speciality" name="speciality" required>
+            </div>
+            <div class="form-group">
+              <label for="description">Description</label>
+              <textarea class="form-control" id="description" name="description" rows="3" required></textarea>
+            </div>
+            <div class="form-group">
+              <label for="experience">Experience</label>
+              <input type="number" class="form-control" id="experience" name="experience" required>
+            </div>
+            <div class="form-group">
+              <label for="availability">Availability (Days)</label>
+              <input type="text" class="form-control" id="availability" name="availability" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+{% endblock %}

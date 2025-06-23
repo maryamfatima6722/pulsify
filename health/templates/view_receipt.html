@@ -1,0 +1,18 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block body %}
+<div class="container mt-5">
+    <h2>View Receipt</h2>
+    {% if payment.receipt %}
+    <div class="receipt-image">
+        <img src="{{ payment.receipt.url }}" alt="Payment Receipt" style="max-width: 100%;">
+    </div>
+    <div class="download-link mt-3">
+        <a href="{{ payment.receipt.url }}" download class="btn btn-primary">Download Receipt</a>
+    </div>
+    {% else %}
+    <p>No receipt uploaded for this payment.</p>
+    {% endif %}
+</div>
+{% endblock %}

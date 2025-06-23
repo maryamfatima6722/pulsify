@@ -1,0 +1,1155 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="zxx">
+
+<head>
+	<title>Heart Disease Prediction System</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="UTF-8" />
+	<meta name="keywords" />
+
+
+<script>
+    function getLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition, showError);
+        } else {
+            alert("Geolocation is not supported by this browser.");
+        }
+    }
+
+    function showPosition(position) {
+        var latitude = position.coords.latitude;
+        var longitude = position.coords.longitude;
+        var googleMapsUrl = `https://www.google.com/maps?q=${latitude},${longitude}`;
+        window.location.href = googleMapsUrl;
+    }
+
+    function showError(error) {
+        switch(error.code) {
+            case error.PERMISSION_DENIED:
+                alert("User denied the request for Geolocation.");
+                break;
+            case error.POSITION_UNAVAILABLE:
+                alert("Location information is unavailable.");
+                break;
+            case error.TIMEOUT:
+                alert("The request to get user location timed out.");
+                break;
+            case error.UNKNOWN_ERROR:
+                alert("An unknown error occurred.");
+                break;
+        }
+    }
+    </script>
+	<style>
+        /* Navigation Link - Hover Effect */
+        .menu a:hover {
+            background-color: #bf395f; 
+            color: #fff !important;
+            border-radius: 5px;
+        }
+
+        /* Active Page Indicator */
+        .menu .active {
+            background-color: #c74367; 
+            color: #ffffff !important;
+            border-radius: 5px; 
+        }
+
+        /* Navigation and Dropdown Menu Styles */
+        .menu {
+            padding: 15px;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            list-style-type: none;
+            margin: 0;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            background-color: #DF4879;
+            padding: 0;
+            margin-top: 0.5rem;
+            list-style-type: none;
+        }
+
+        .dropdown-menu a {
+            color: rgb(137, 61, 203);
+            text-decoration: none;
+            display: block;
+            padding: 0.5rem 1rem;
+        }
+
+        /* Responsive Menu Toggle */
+        .toggle {
+            color: rgb(101, 22, 174);
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .toggle {
+                display: block;
+            }
+
+            .menu {
+                flex-direction: column;
+                display: none;
+            }
+
+            .dropdown-menu {
+                position: static;
+            }
+        }
+    </style>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+
+    <link rel="stylesheet" href="{% static 'assets/bootstrap/bootstrap.min.css' %}">
+<link rel="stylesheet" href="{% static 'assets/css/aos.css' %}">
+<link rel="stylesheet" href="{% static 'assets/css/mobile.css' %}">
+<link rel="stylesheet" href="{% static 'assets/css/superclasses.css' %}">
+<link rel="stylesheet" href="{% static 'assets/css/custom.css' %}">
+
+	<link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+	<link href="{% static 'css/css_slider.css' %}" type="text/css" rel="stylesheet" media="all">
+	<link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css" media="all" />
+	<link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet">
+<link rel="icon" href="{% static 'assets/images/fav-icon.png' %}">
+<link rel="stylesheet" href="{% static 'assets/css/owl.carousel.min.css' %}">
+<link rel="stylesheet" href="{% static 'assets/css/aos.css' %}">
+<link rel="stylesheet" href="{% static 'assets/css/superclasses.css' %}">
+<link rel="stylesheet" href="{% static 'assets/css/custom.css' %}">
+<link rel="stylesheet" href="{% static 'assets/css/mobile.css' %}">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+
+	<!--Template style -->
+<link rel="stylesheet" type="text/css" href="{% static 'assets/css/animate.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'assets/css/animate.min.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'assets/css/bootstrap.min.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'assets/css/fonts.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'assets/css/font-awesome.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'assets/css/font-awesome.min.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'assets/css/magnific-popup.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'assets/css/owl.carousel.min.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'assets/css/owl.theme.default.min.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'assets/css/style.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'assets/css/responsive.css' %}" />
+<link rel="shortcut icon" type="image/png" href="{% static 'assets/images/fav-icon.png' %}" />
+
+	<!-- Web-Fonts -->
+	<link href="//fonts.googleapis.com/css?family=Quicksand:300,400,500,700" rel="stylesheet">
+	<link href="//fonts.googleapis.com/css?family=Mukta:200,300,400,500,600,700,800&amp;subset=devanagari,latin-ext" rel="stylesheet">
+<style>
+.li2{
+	border:1px solid red;
+	padding:8px;
+	}
+</style>
+<style>
+        /* Custom CSS for footer */
+        .footer {
+            background-color: green;
+            color: white; 
+            padding: 50px 0; 
+        }
+        .footer a {
+            color: white;
+        }
+        .footer h2 {
+            color: white; 
+        }
+        .footer p {
+            color: white; 
+        }
+
+
+    </style>
+
+<link rel='stylesheet' type='text/css' href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
+<link rel='stylesheet' type='text/css' href="https://cdn.datatables.net/buttons/1.6.2/css/buttons.dataTables.min.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.2/js/dataTables.buttons.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.html5.min.js"></script>
+<script>
+    document.querySelector('#drop1').addEventListener('change', function() {
+        const menu = document.querySelector('.menu');
+        menu.style.display = this.checked ? 'block' : 'none';
+    });
+
+    document.querySelectorAll('.toggle.toogle-2').forEach(function(toggle) {
+        toggle.nextElementSibling.style.display = 'none'; // Initial state
+        toggle.addEventListener('click', function() {
+            let input = document.getElementById(toggle.htmlFor);
+            input.checked = !input.checked;
+            input.dispatchEvent(new Event('change'));
+        });
+    });
+
+    document.querySelectorAll('#drop-2').forEach(function(drop) {
+        drop.addEventListener('change', function() {
+            this.nextElementSibling.style.display = this.checked ? 'block' : 'none';
+        });
+    });
+</script>
+<script>
+$(document).ready(function() {
+    $('#example').DataTable( {
+        dom: 'Bfrtip',
+        buttons: [
+            'copyHtml5',
+            'excelHtml5',
+            'csvHtml5',
+            'pdfHtml5'
+        ]
+    } );
+} );
+</script>
+</head>
+
+<body>
+	<!-- main -->
+	<div id="home" style="margin-bottom:2%">
+		<!-- top header -->
+		 <div class="main-header-wrapper float_left">
+      <div class="sb-main-header">
+         <div class="top-header-section">
+            <div class="container">
+               <div class="row">
+                  <div class="col-lg-6 col-md-6 col-sm-6 col-8">
+                     <div class="sb-top-left-section">
+                        <div>
+    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=pulsifyhealth@gmail.com" target="_blank">
+        <span><i class="fas fa-envelope"></i></span>&nbsp;&nbsp;pulsifyhealth@gmail.com
+    </a>
+</div>
+
+                     </div>
+                  </div>
+                  <div class="col-lg-6 col-md-6 col-sm-6 col-4 p-0">
+                     <div class="sb-top-right-section">
+                        <ul>
+                           <li>
+                              <ul>
+    <li>
+        <ul class="d-xl-flex d-lg-flex d-md-none d-sm-none d-none">
+            <li><a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+            <li><a href="https://www.twitter.com" target="_blank"><i class="fab fa-twitter"></i></a></li>
+            <li><a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a></li>
+            <li><a href="https://www.pinterest.com" target="_blank"><i class="fab fa-pinterest-p"></i></a></li>
+        </ul>
+    </li>
+</ul>
+                        </ul>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+
+
+         <div class="mid-header-section d-xl-block d-lg-block d-md-none d-sm-none d-none">
+            <div class="container">
+               <div class="row">
+                  <div class="col-lg-3 col-md-3 col-sm-12 col-12">
+                     <div class="sb_logo_wrapper">
+                        <a href="/patient_home">
+                          <img src="{% static 'images/untitled-2.png' %}" alt="img" class="">
+                        </a>
+                     </div>
+                  </div>
+                  <div class="col-lg-9 col-md-9 col-sm-12 col-12">
+                     <div class="sb-mid-right-section">
+                        <ul>
+                           <li>
+            <a href="javascript:void(0);" onclick="getLocation()"><i class="fas fa-map-marker-alt"></i></a>
+            <a href="javascript:void(0);" onclick="getLocation()">Mandi Bahauddin<br>punjab, Pakistan</a>
+        </li>
+
+
+                            <li>
+            <a href="tel:+8023412356712"><i class="fas fa-phone"></i></a>
+            <a href="tel:+8023412356712">Call Us 24/7<br>
+               +92466722783
+            </a>
+        </li>
+                           </li>
+
+                <li class="border-none pe-0">
+                    <a href="{% url 'contact' %}"><i class="fas fa-map-marker-alt"></i></a>
+                    <a href="{% url 'contact' %}">Mon - Fri: 8:00am - 7:00pm<br> Sat - Sun: 11:00am - 1:00pm</a>
+                </li>
+                        </ul>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+		<!-- //top header -->
+
+		<!-- second header -->
+		<div class="top" style="background:#DF4879">
+			<div class="container-fluid">
+				<div class="header d-md-flex justify-content-between align-items-center py-3">
+					<!-- logo -->
+					<div id="logo" style="margin-left: 0;">
+                <h1>
+                    <a href="#" style="color: black; text-decoration: none;">
+
+                        <span class="logo-sp mx-5"><b>Pulsify</b></span>
+                    </a>
+                </h1>
+            </div>
+					<!-- //logo -->
+					<!-- nav -->
+					{% if request.user.is_staff %}
+					<div class="nav_w3ls" style="margin-right: 4%;">
+  <nav style="background: #DF4879; padding: 0.5rem 0;">
+    <div class="container-fluid" style="width: 100%;">
+        <div class="header d-flex justify-content-between align-items-center" style="max-width: 1000px; width: 90%; margin: 0 auto;">
+            <label for="drop1" class="toggle" style="margin-right: 1rem;">&#9776; Menu</label>
+            <input type="checkbox" id="drop1" style="display: none;" />
+            
+            <ul class="menu" style="
+                list-style: none;
+                display: flex;
+                flex-wrap: nowrap;
+                justify-content: flex-start;
+                align-items: center;
+                padding: 0;
+                margin: 0;
+            ">
+                <li class="mx-lg-4 mx-md-3 my-md-0 my-2">
+                    <a href="{% url 'admin_home' %}" class="{% if request.resolver_match.url_name == 'admin_home' %}active{% endif %}" style="text-decoration: none; padding: 5px 10px;">Home</a>
+                </li>
+                <li class="mx-lg-4 mx-md-3 my-md-0 my-2">
+                    <a href="/view_patient" class="{% if request.path == '/view_patient' %}active{% endif %}" style="text-decoration: none; padding: 5px 10px;">Patient</a>
+                </li>
+                <li class="mx-lg-4 mx-md-3 my-md-0 my-2" style="flex-shrink: 0;">
+                    <a href="/view_search_pat" class="{% if request.path == '/view_search_pat' %}active{% endif %}" style="text-decoration: none; padding: 5px 10px; white-space: nowrap;">Searched Data</a>
+                </li>
+                <li class="mx-lg-4 mx-md-3 my-md-0 my-2">
+                    <a href="/view_feedback" class="{% if request.path == '/view_feedback' %}active{% endif %}" style="text-decoration: none; padding: 5px 10px;">Feedback</a>
+                </li>
+                <!-- <li class="mx-lg-4 mx-md-3 my-md-0 my-2">
+                    <a href="{% url 'doctor_reports' %}" class="{% if request.resolver_match.url_name == 'doctor_reports' %}active{% endif %}" style="text-decoration: none; padding: 5px 10px;">Doctor Reports</a>
+                </li> -->
+               
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+<style>
+    /* General Navigation Bar Styles */
+    nav {
+        background: #DF4879;
+        padding: 0.5rem 0;
+        font-family: 'Arial', sans-serif;
+    }
+
+    .menu {
+        list-style: none;
+        display: flex;
+        align-items: center;
+        padding: 0;
+        margin: 0;           
+            
+    }
+
+    .menu a {
+        color: white;
+        text-decoration: none;
+        padding: 10px 15px;
+        transition: color 0.5s ease, border-bottom 0.5s ease;
+    }
+
+    .menu a:hover,
+    .menu a.active {
+        color: black;
+        border-bottom: 2px solid black;
+    }
+
+    .dropdown {
+        position: relative;
+    }
+
+    .dropdown-menu {
+        display: none;
+        list-style: none;
+        background: #ffffff;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        min-width: 160px;
+        padding: 10px 0;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        z-index: 1000;
+    }
+
+    .dropdown-menu li {
+        padding: 0;
+    }
+
+    .dropdown-menu li a {
+        color: black;
+        text-decoration: none;
+        padding: 10px 20px;
+        display: block;
+        transition: background 0.1s ease;
+    }
+
+    .dropdown-menu li a:hover {
+        background-color: #f1f1f1;
+    }
+
+    .dropdown:hover .dropdown-menu {
+        display: block;
+    }
+
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .toggle {
+        display: none;
+        cursor: pointer;
+        color: white;
+        padding: 10px;
+        font-size: 20px;
+    }
+</style>
+
+</div>
+
+<style>
+    .menu > li {
+        position: relative;
+    }
+
+    .menu > li > a {
+        color: white;
+        text-decoration: none;
+        padding: 5px 10px;
+        display: block;
+    }
+
+    .menu > li:hover > a {
+        background-color: #c83a67;
+        border-radius: 4px;
+    }
+
+    .dropdown-menu {
+        display: none;
+        position: absolute;
+        background-color: #ffffff;
+        color: black;
+        padding: 10px 0;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        min-width: 150px;
+    }
+
+    .dropdown-menu li {
+        padding: 0;
+    }
+
+    .dropdown-menu li a {
+        color: black;
+        text-decoration: none;
+        padding: 10px 20px;
+        display: block;
+        transition: background 0.3s;
+    }
+
+    .dropdown-menu li a:hover {
+        background-color: #f1f1f1;
+    }
+
+    .menu > li:hover .dropdown-menu {
+        display: block;
+    }
+</style>
+
+					<div class="nav_w3ls" style="margin-right:3%">
+
+						<nav>
+							<label for="drop2" class="toggle">Menu</label>
+							<input type="checkbox" id="drop2" />
+							<ul class="menu">
+								<li class="mx-lg-4 mx-md-3 my-md-0 my-2" style="background:red;padding:8px">
+									<!-- First Tier Drop Down -->
+									<label for="drop-2" class="toggle toogle-2"> <span class="fa fa-angle-down" aria-hidden="true"></span>
+									</label>
+									<a href="#"><i class="fa fa-user"></i> {{request.user.username}} <span class="fa fa-angle-down" aria-hidden="true"></span></a>
+									<ul style="margin-top:10%;width:80%;margin-right:5%">
+										<li style="width:100%;"><a href="{% url 'change_password' %}" class="drop-text" style="background-color:white; color: black;">Password</a></li>
+										<li style="width:100%;"><a href="{% url 'logout' %}" class="drop-text" style="background-color: white; color: black;">Logout</a></li>
+									</ul>
+								</li>
+
+							</ul>
+						</nav>
+					</div>
+
+				{% elif request.user.patient %}
+<div class="nav_w3ls" style="margin-left:5%;font-weight:bold">
+    <nav style="background: #DF4879; padding: 10px 0;">
+    <label for="drop3" class="toggle" style="display: none; cursor: pointer; color: white; padding: 10px; font-size: 20px;">Menu</label>
+    <input type="checkbox" id="drop3" style="display:none;" />
+    <ul class="menu" style="list-style: none; margin: 0; padding: 0; display: flex; justify-content: flex-start; align-items: center; flex-wrap: nowrap; background: #DF4879; width: 100%;">
+        <li style="margin: 0 5px;">
+            <a href="{% url 'patient_home' %}" class="{% if request.resolver_match.url_name == 'patient_home' %}active{% endif %}" style="text-decoration: none; padding: 5px 10px;">Home</a>
+        </li>
+
+        <!-- Dropdown Menu -->
+        <li style="margin: 0 5px; position: relative;" class="dropdown">
+            <a href="#" class="dropdown-toggle" style="text-decoration: none; padding: 5px 10px;">Predict <span class="fa fa-angle-down"></span></a>
+            <ul class="dropdown-menu">
+                <li style="margin: 0; padding: 0;">
+                    <a href="/add_heartdetail" style="text-decoration: none; display: block; padding: 5px 10px;">Predict</a>
+                </li>
+                <li style="margin: 0; padding: 0;">
+                    <a href="{% url 'predict_heart_disease' %}" style="text-decoration: none; display: block; padding: 5px 10px;">Risk of Attack</a>
+                </li>
+            </ul>
+        </li>
+
+        <li style="margin: 0 5px;">
+            <a href="/profile_doctor" class="{% if request.path == '/profile_doctor' %}active{% endif %}" style="text-decoration: none; padding: 5px 10px;">My Detail</a>
+        </li>
+        <li style="margin: 0 5px;">
+            <a href="/sent_feedback" class="{% if request.path == '/sent_feedback' %}active{% endif %}" style="text-decoration: none; padding: 5px 10px;">Feedback</a>
+        </li>
+        <li style="margin: 0 5px;">
+            <a href="/view_search_pat" class="{% if request.path == '/view_search_pat' %}active{% endif %}" style="text-decoration: none; padding: 5px 10px;">History</a>
+        </li>
+        <li style="margin: 0 5px;">
+            <a href="/patient_appointments" class="{% if request.path == '/patient_appointments' %}active{% endif %}" style="text-decoration: none; padding: 5px 10px;">Appointment</a>
+        </li>
+        <li style="margin: 0 5px;">
+            <a href="/doctor_availability" class="{% if request.path == '/doctor_availability' %}active{% endif %}" style="text-decoration: none; padding: 5px 10px;">Available Doctors</a>
+        </li>
+        {% if doctor_id %}
+            <li style="margin: 0 5px;">
+                <a href="{% url 'book_appointment' doctor_id %}" class="{% if request.resolver_match.url_name == 'book_appointment' %}active{% endif %}" style="text-decoration: none; padding: 5px 10px;">Book Appointment</a>
+            </li>
+        {% endif %}
+    </ul>
+</nav>
+
+<style>
+    .menu a {
+        color: black;
+        text-decoration: none;
+        padding: 5px 10px;
+        transition: color 0.3s, border-bottom 0.3s;
+    }
+
+    .menu a:hover,
+    .menu a.active {
+        color: #007bff;
+        border-bottom: 2px solid #007bff;
+    }
+
+    .dropdown:hover .dropdown-menu {
+        display: block;
+    }
+
+    .dropdown-menu {
+        display: none;
+        background-color: #DF4879;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        z-index: 1000;
+        min-width: 160px;
+        padding: 5px 0;
+        list-style: none;
+        border-radius: 4px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .dropdown-menu li {
+        padding: 0;
+    }
+
+    .dropdown-menu li a {
+        display: block;
+        color: #000;
+        text-decoration: none;
+        padding: 5px 10px;
+    }
+
+    .dropdown-menu li a:hover {
+        background-color: #333;
+        color: #fff;
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var dropdown = document.querySelector('.dropdown');
+        dropdown.addEventListener('mouseenter', function () {
+            dropdown.querySelector('.dropdown-menu').style.display = 'block';
+        });
+        dropdown.addEventListener('mouseleave', function () {
+            dropdown.querySelector('.dropdown-menu').style.display = 'none';
+        });
+    });
+</script>
+
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var dropdownToggle = document.querySelector('.dropdown-toggle');
+        var dropdownMenu = document.querySelector('.dropdown-menu');
+
+        dropdownToggle.addEventListener('click', function(e) {
+            e.preventDefault();
+            dropdownMenu.style.display = dropdownMenu.style.display === 'block' ? 'none' : 'block';
+        });
+    });
+</script>
+
+<div class="nav_w3ls" style="margin-right:3%">
+    <nav>
+        <label for="drop4" class="toggle">Menu</label>
+        <input type="checkbox" id="drop4" />
+        <ul class="menu" style="list-style: none; margin: 0; padding: 0; display: flex; justify-content: flex-end; align-items: center; flex-wrap: nowrap;">
+            <li class="mx-lg-4 mx-md-3 my-md-0 my-2" style="background:red;padding:8px">
+                <label for="drop-3" class="toggle toogle-3">
+                    <span class="fa fa-angle-down" aria-hidden="true"></span>
+                </label>
+                <a href="#" style="color: white; text-decoration: none; padding: 5px 10px;"><i class="fa fa-sign-in"></i> Hi,{{request.user.username}} <span class="fa fa-angle-down" aria-hidden="true"></span></a>
+                <ul style="margin-top:8%;width:80%;margin-right:5%">
+                    <li style="width:100%;"><a href="{% url 'change_password' %}" class="drop-text" style="color:black; background-color: #fff; text-decoration: none; padding: 5px 10px;"> Password</a></li>
+                    <li style="width:100%;"><a href="{% url 'logout' %}" class="drop-text" style="color: black; background-color: #fff; text-decoration: none; padding: 5px 10px;"> Logout</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+</div>
+                    {% elif request.user.doctor_profile %}
+					<div class="nav_w3ls" style="margin-right: 4%;">
+
+  <nav style="background: #DF4879; padding: 10px 0;">
+    <label for="drop5" class="toggle" style="display: none; cursor: pointer; color: white; padding: 10px; font-size: 20px;">Menu</label>
+    <input type="checkbox" id="drop5" style="display:none;" />
+    <ul class="menu" style="list-style: none; margin: 0; padding: 0; display: flex; justify-content: flex-start; align-items: center; flex-wrap: nowrap; background: #DF4879; width: 100%;">
+        <li style="margin: 0 5px;">
+            <a href="{% url 'doctor_home' %}" class="{% if request.resolver_match.url_name == 'doctor_home' %}active{% endif %}" style="text-decoration: none; padding: 5px 10px;">Home</a>
+        </li>
+        <li style="margin: 0 5px;">
+            <a href="{% url 'profile_doctor' %}" class="{% if request.resolver_match.url_name == 'profile_doctor' %}active{% endif %}" style="text-decoration: none; padding: 5px 10px;">My Detail</a>
+        </li>
+        <li style="margin: 0 5px;">
+            <a href="{% url 'view_search_pat' %}" class="{% if request.resolver_match.url_name == 'view_search_pat' %}active{% endif %}" style="text-decoration: none; padding: 5px 10px;">Searched Data</a>
+        </li>
+        <li style="margin: 0 5px;">
+            <a href="{% url 'blog_create' %}" class="{% if request.resolver_match.url_name == 'blog_create' %}active{% endif %}" style="text-decoration: none; padding: 5px 10px;">Create Blog</a>
+        </li>
+        <li style="margin: 0 5px;">
+            <a href="{% url 'view_availabilities' %}" class="{% if request.resolver_match.url_name == 'view_availabilities' %}active{% endif %}" style="text-decoration: none; padding: 5px 10px;">Manage Appointments</a>
+        </li>
+        <li style="margin: 0 5px;">
+            <a href="{% url 'add_availability' %}" class="{% if request.resolver_match.url_name == 'add_availability' %}active{% endif %}" style="text-decoration: none; padding: 5px 10px;">Add Availability</a>
+        </li>
+    </ul>
+</nav>
+
+<style>
+    /* General Navigation Bar Styles */
+    nav {
+        background: #DF4879;
+        padding: 10px 0;
+        font-family: 'Arial', sans-serif;
+    }
+
+    .menu {
+        list-style: none;
+        display: flex;
+        align-items: center;
+        padding: 0;
+        margin: 0;
+    }
+
+    .menu a {
+        color: white;
+        text-decoration: none;
+        padding: 10px 15px;
+        transition: color 0.3s ease, border-bottom 0.3s ease;
+    }
+
+    .menu a:hover,
+    .menu a.active {
+        color: black;
+        border-bottom: 2px solid black;
+    }
+
+    .dropdown {
+        position: relative;
+    }
+
+    .dropdown-menu {
+        display: none;
+        list-style: none;
+        background: #ffffff;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        min-width: 160px;
+        padding: 10px 0;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        z-index: 1000;
+    }
+
+    .dropdown-menu li {
+        padding: 0;
+    }
+
+    .dropdown-menu li a {
+        color: black;
+        text-decoration: none;
+        padding: 10px 20px;
+        display: block;
+        transition: background 0.5s ease;
+    }
+
+    .dropdown-menu li a:hover {
+        background-color: #f1f1f1;
+    }
+
+    .dropdown:hover .dropdown-menu {
+        display: block;
+    }
+
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .toggle {
+        display: none;
+        cursor: pointer;
+        color: white;
+        padding: 10px;
+        font-size: 20px;
+    }
+
+    @media (max-width: 768px) {
+        .menu {
+            flex-direction: column;
+            display: none;
+        }
+
+        .menu a {
+            padding: 10px;
+        }
+
+        .menu.show {
+            display: flex;
+        }
+
+        .toggle {
+            display: block;
+        }
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const toggle = document.querySelector('.toggle');
+        const menu = document.querySelector('.menu');
+        toggle.addEventListener('click', function () {
+            menu.classList.toggle('show');
+        });
+    });
+</script>
+
+</div>
+
+					<div class="nav_w3ls" style="margin-right:3%">
+
+						<nav>
+							<label for="drop6" class="toggle">Menu</label>
+							<input type="checkbox" id="drop6" />
+							<ul class="menu">
+								<li class="mx-lg-4 mx-md-3 my-md-0 my-2" style="background:red;padding:8px">
+									<!-- First Tier Drop Down -->
+									<label for="drop6" class="toggle toogle-2"> <span class="fa fa-angle-down" aria-hidden="true"></span>
+									</label>
+									<a href="#"><i class="fa fa-user"></i> {{request.user.username}} <span class="fa fa-angle-down" aria-hidden="true"></span></a>
+									<ul style="margin-top:10%;width:80%;margin-right:5%">
+										<li style="width:100%;"><a href="{% url 'change_password' %}" class="drop-text" style="background-color: #f1f1f1; color: black;">Password</a></li>
+										<li style="width:100%;"><a href="{% url 'logout' %}" class="drop-text" style="background-color: #f1f1f1; color: black;">Logout</a></li>
+									</ul>
+								</li>
+
+
+
+							</ul>
+						</nav>
+					</div>
+					{% else %}
+					<div class="nav_w3ls" style="margin-right: 4%;">
+    <nav>
+    <label for="drop7" class="toggle">Menu</label>
+    <input type="checkbox" id="drop7" />
+    <ul class="menu" style="padding: 15px; width: 100%; display: flex; justify-content: space-between;">
+        <li>
+            <a href="{% url 'home' %}" class="{% if request.resolver_match.url_name == 'home' %}active{% endif %}">Home</a>
+        </li>
+        <li style="margin: 0 10px;">
+            <a href="{% url 'about' %}" class="{% if request.resolver_match.url_name == 'about' %}active{% endif %}">About Us</a>
+        </li>
+        <li style="margin: 0 10px;">
+            <a href="{% url 'gallery' %}" class="{% if request.resolver_match.url_name == 'gallery' %}active{% endif %}">Gallery</a>
+        </li>
+        <li style="margin: 0 10px;">
+            <a href="{% url 'information_hub' %}" class="{% if request.resolver_match.url_name == 'information_hub' %}active{% endif %}">Information Hub</a>
+        </li>
+        <li style="margin: 0 10px;">
+            <a href="{% url 'blog_list' %}" class="{% if request.resolver_match.url_name == 'blog_list' %}active{% endif %}">Blog</a>
+        </li>
+        <li>
+            <a href="{% url 'contact' %}" class="{% if request.resolver_match.url_name == 'contact' %}active{% endif %}"><i class="fas fa-angle-right"></i>Contact Us</a>
+        </li>
+    </ul>
+</nav>
+
+<style>
+    .menu a {
+        color: #000;
+        text-decoration: none;
+        padding: 5px 10px;
+        transition: color 0.5s, border-bottom 0.5s;
+    }
+
+    .menu a:hover,
+    .menu a.active {
+        color: #007bff;
+        border-bottom: 2px solid #007bff;
+    }
+</style>
+
+</div>
+					<div class="nav_w3ls" style="margin-right:3%">
+
+						<nav>
+							<label for="drop" class="toggle">Menu</label>
+							<input type="checkbox" id="drop" />
+							<ul class="menu">
+								<li class="mx-lg-4 mx-md-3 my-md-0 my-2" style="background:white;padding:8px">
+									<!-- First Tier Drop Down -->
+									<label for="drop-2" class="toggle toogle-2"> <span class="fa fa-angle-down" aria-hidden="true"></span>
+									</label>
+									<a href="#"><i class="fa fa-sign-in"></i> Login <span class="fa fa-angle-down" aria-hidden="true"></span></a>
+									<ul style="margin-top:10%;width:80%;margin-right:5%">
+										<li style="width:100%;"><a href="{% url 'login_admin' %}" class="drop-text" style="background-color:white; color: #000;">Admin</a></li>
+										<li style="width:100%;"><a href="{% url 'login' %}" class="drop-text" style="background-color:white; color: #000;" >User</a></li>
+									</ul>
+								</li>
+
+
+
+							</ul>
+						</nav>
+					</div>
+					{% endif %}
+
+
+					<!-- //nav -->
+				</div>
+			</div>
+		</div>
+		<!-- //second header -->
+
+		<!-- banner -->
+		{% block body %}
+		{% endblock %}
+		<!-- //banner -->
+	</div>
+	<!-- //main -->
+
+
+
+<div class="footer-main-wrapper">
+   <div class="container">
+      <div class="row">
+         <!-- Column 1: Contact Information -->
+         <div class="col-lg-4 col-md-6 col-sm-12 col-12">
+            <div class="sb-footer-section">
+               <div class="footer-logo">
+                 <img src="{% static 'images/untitled-2.png' %}" alt="img" >
+               </div>
+               <ul class="contact-info">
+                  <li>
+                     <a href="https://mail.google.com/mail/?view=cm&fs=1&to=pulsifyhealth@gmail.com" target="_blank">
+                        <i class="fas fa-envelope"></i> EMAIL<br>
+                        pulsifyhealth@gmail.com
+                     </a>
+                  </li>
+                  <li>
+                     <a href="tel:+8023412356712">
+                        <i class="fas fa-phone"></i> PHONE<br>
+                        +92466722783
+                     </a>
+                  </li>
+                  <li>
+                     <a href="javascript:void(0);" onclick="getLocation()">
+                        <i class="fas fa-map-marker-alt"></i> ADDRESS<br>
+                        Mandi Bahauddin Punjab Pakistan
+                     </a>
+                  </li>
+               </ul>
+               <ul class="footer-media">
+                  <li><a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+                  <li><a href="https://www.twitter.com" target="_blank"><i class="fab fa-twitter"></i></a></li>
+                  <li><a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a></li>
+                  <li><a href="https://www.pinterest.com" target="_blank"><i class="fab fa-pinterest-p"></i></a></li>
+               </ul>
+            </div>
+         </div>
+         <!-- Column 2: Useful Links -->
+         <div class="col-lg-4 col-md-6 col-sm-12 col-12">
+            <div class="links">
+               <h4>Useful Links</h4>
+               <ul class="useful-links">
+                  <li><a href="{% url 'about' %}"><i class="fas fa-angle-right"></i> About Us</a></li>
+                  <li><a href="{% url 'gallery' %}"><i class="fas fa-angle-right"></i> Gallery</a></li>
+                  <li><a href="{% url 'information_hub' %}"><i class="fas fa-angle-right"></i> Information Hub</a></li>
+                  <li><a href="{% url 'blog_list' %}"><i class="fas fa-angle-right"></i> Blog</a></li>
+                  <li><a href="{% url 'contact' %}"><i class="fas fa-angle-right"></i> Contact Us</a></li>
+               </ul>
+            </div>
+         </div>
+         Column 3: Opening Hours and Newsletter
+         <div class="col-lg-4 col-md-6 col-sm-12 col-12">
+            <div class="time-wrapper">
+               <div class="opening-hours">
+                  <h4>Days</h4>
+                  <ul>
+                     <li>Monday</li>
+                     <li>Tuesday</li>
+                     <li>Wednesday</li>
+                     <li>Thursday</li>
+                     <li>Friday</li>
+                     <li>Saturday</li>
+                     <li>Sunday</li>
+                  </ul>
+               </div>
+               <div class="hours">
+                  <h4>Opening Hours</h4>
+                  <ul>
+                     <li>08.00 - 10.00</li>
+                     <li>09.00 - 11.00</li>
+                     <li>10.00 - 12.00</li>
+                     <li>11.00 - 01.00</li>
+                     <li>12.00 - 02.00</li>
+                     <li>01.00 - 02.00</li>
+                     <li>02.00 - 04.00</li>
+                  </ul>
+               </div>
+            </div>
+            <div id="newsletter">
+               <h5>Sign Up for Pulsify</h5>
+            </div>
+         </div>
+      </div>
+      <!-- Row for Footer Bottom -->
+      <div class="row footer-bottom">
+         <div class="col-lg-6 col-md-12 col-sm-12 col-12">
+            <p>© Copyright 2025 Design by <a href="#">Pulsify</a> | All Rights Reserved.</p>
+         </div>
+         <div class="col-lg-6 col-md-12 col-sm-12 col-12 text-right">
+            <p class="last-para">Privacy Policy | Terms and Conditions.</p>
+         </div>
+      </div>
+   </div>
+</div>
+
+<style>
+.footer-main-wrapper {
+    background-color: #f8f9fa;
+    padding: 50px 0;
+    color: #495057;
+}
+.footer-logo img {
+    max-width: 150px;
+    margin-bottom: 20px;
+}
+.contact-info {
+    list-style: none;
+    padding: 0;
+}
+.contact-info li {
+    margin-bottom: 15px;
+}
+.contact-info a {
+    color: #495057;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+.contact-info a:hover {
+    color: #007bff;
+}
+.footer-media {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    gap: 10px;
+}
+.footer-media li a {
+    color: #495057;
+    font-size: 20px;
+    transition: color 0.3s ease;
+}
+.footer-media li a:hover {
+    color: #007bff;
+}
+.links h4, .time-wrapper h4 {
+    margin-bottom: 20px;
+    font-size: 18px;
+    font-weight: bold;
+}
+.useful-links {
+    list-style: none;
+    padding: 0;
+}
+.useful-links li {
+    margin-bottom: 10px;
+}
+.useful-links a {
+    color: #495057;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+.useful-links a:hover {
+    color: #007bff;
+}
+.time-wrapper {
+    display: flex;
+    justify-content: space-between;
+}
+.time-wrapper div ul {
+    list-style: none;
+    padding: 0;
+}
+.time-wrapper div ul li {
+    margin-bottom: 5px;
+}
+.footer-bottom {
+    margin-top: 30px;
+    border-top: 1px solid #dee2e6;
+    padding-top: 20px;
+}
+.footer-bottom p {
+    margin: 0;
+    font-size: 14px;
+}
+.last-para {
+    text-align: right;
+}
+@media (max-width: 768px) {
+    .time-wrapper {
+        flex-direction: column;
+    }
+    .last-para {
+        text-align: left;
+    }
+}
+</style>
+
+
+<style>
+.footer {
+    background-color: green;
+    color: white;
+    padding: 50px 0;
+}
+.footer a {
+    color: white;
+}
+.footer h4, .footer h5, .footer p {
+    color: white;
+}
+.footer .footer-media {
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px;
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+}
+.footer .footer-media li {
+    display: inline-block;
+}
+.footer .footer-media li a {
+    color: white;
+    font-size: 20px;
+}
+</style>
+	
+
+</body>
+<!-- Side Panel -->
+<script src="{% static 'assets/js/jquery-3.6.0.min.js' %}"></script>
+<script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'assets/js/wow.js' %}"></script>
+<script src="{% static 'assets/js/jquery.magnific-popup.js' %}"></script>
+<script src="{% static 'assets/js/owl.carousel.min.js' %}"></script>
+<script src="{% static 'assets/js/contact_form.js' %}"></script>
+<script src="{% static 'assets/js/custom.js' %}"></script>
+<!-- custom js -->
+
+
+ <script>
+      wow = new WOW(
+         {
+            animateClass: 'animated',
+            offset: 100,
+            callback: function (box) {
+               console.log("WOW: animating <" + box.tagName.toLowerCase() + ">")
+            }
+         }
+      );
+      wow.init();
+   </script>
+   <script>
+   function actionToggleOne() {
+   let action = document.querySelector('.contact-action');
+   action.classList.toggle('open1');
+   }
+   function actionToggleTwo() {
+      let action = document.querySelector('.action-1');
+      action.classList.toggle('open2');
+   }
+   function actionToggleThree() {
+      let action = document.querySelector('.action-2');
+      action.classList.toggle('open3');
+   }
+   function actionToggleFour() {
+      let action = document.querySelector('.action-3');
+      action.classList.toggle('open4');
+   }
+   </script>
+</html>

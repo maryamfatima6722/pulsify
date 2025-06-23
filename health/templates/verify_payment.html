@@ -1,0 +1,18 @@
+<!-- In templates/admin/verify_payment.html -->
+
+{% extends 'index.html' %}
+
+{% block content %}
+  <h2>Verify Payment for Appointment ID {{ appointment.id }}</h2>
+  <form method="post">
+    {% csrf_token %}
+    <div>
+      <p>Appointment details: <strong>{{ appointment.details }}</strong></p>
+      <p><img src="{{ appointment.payment_receipt.url }}" alt="Payment Receipt" style="max-width: 300px;"></p>
+    </div>
+    <div>
+      <button type="submit" name="verify" value="verify">Verify Payment</button>
+      <button type="submit" name="deny" value="deny">Deny Payment</button>
+    </div>
+  </form>
+{% endblock %}

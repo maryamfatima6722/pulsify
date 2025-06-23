@@ -1,0 +1,8 @@
+{% extends 'index.html' %}
+{% block content %}
+<form method="post">
+    {% csrf_token %}
+    <button name="verify" type="submit">Verify Payment</button>
+    <button name="reject" type="submit">Reject Payment</button>
+</form>
+{% endblock %}

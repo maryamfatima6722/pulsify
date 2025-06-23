@@ -1,0 +1,13 @@
+{% extends 'index.html' %}
+
+{% block content %}
+<div class="container">
+    <h2>Cancel Appointment</h2>
+    <p>Are you sure you want to cancel this appointment with {{ appointment.patient.user.get_full_name }} on {{ appointment.appointment_time }}?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Cancel Appointment</button>
+        <a href="{% url 'manage_appointments' %}" class="btn btn-secondary">Back</a>
+    </form>
+</div>
+{% endblock %}

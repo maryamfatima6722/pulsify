@@ -1,0 +1,22 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block body %}
+<div class="container mt-5">
+  <h2>Appointment Details</h2>
+  <p>Doctor: {{ appointment.doctor.user.get_full_name }}</p>
+  <p>Speciality: {{ appointment.doctor.category }}</p>
+  <p>Appointment Time: {{ appointment.appointment_time|date:"D, d M Y H:i" }}</p>
+  <p>Status: {{ appointment.status }}</p>
+
+  {% if chat_enabled %}
+  <div class="chat-call-options">
+    <h3>Chat and Call Options</h3>
+    <a href="{% url 'chat' %}?appointment_id={{ appointment.id }}" class="btn btn-primary">Start Chat</a>
+    <button onclick="startVideoCall()" class="btn btn-secondary">Start Video Call</button>
+  </div>
+  {% else %}
+  <p>Chat and call options will be available during the appointment time.</p>
+  {% endif %}
+</div>
+{% endblock %}

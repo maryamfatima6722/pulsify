@@ -1,0 +1,37 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block body %}
+<div class="container">
+    <h1 class="mt-4 mb-4">Available Doctors</h1>
+    <div class="row">
+        {% for doctor in doctors %}
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <div class="position-relative">
+                    <img src="{{ doctor.image.url }}" class="doctor-image-top-right" alt="{{ doctor.user.get_full_name }}">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">{{ doctor.user.get_full_name }}</h5>
+                    <p class="card-text">Specialist: {{ doctor.category }}</p>
+                    <p class="card-text">Contact: {{ doctor.contact }}</p>
+                    <p class="card-text">Address: {{ doctor.address }}</p>
+                    <a href="#" class="btn btn-primary">Check Availability</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<style>
+    .doctor-image-top-right {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 100px; 
+        height: 100px; 
+        border-radius: 50%;
+    }
+</style>
+
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block body %}
+
+<div class="container mt-5">
+    <h2>Upload Your Payment Receipt</h2>
+    <p>Please upload the payment receipt for your appointment.</p>
+
+    <!-- Ensure the form action points to the correct URL and method is POST -->
+    <form action="{% url 'upload_receipt' appointment_id %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <!-- Receipt file input -->
+        <div class="form-group">
+            <label for="receipt">Receipt File:</label>
+            <input type="file" class="form-control" id="receipt" name="receipt" required>
+        </div>
+
+        <!-- Submit button -->
+        <button type="submit" class="btn btn-primary">Upload Receipt</button>
+    </form>
+
+</div>
+
+{% endblock %}

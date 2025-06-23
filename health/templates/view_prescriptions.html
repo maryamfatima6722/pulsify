@@ -1,0 +1,32 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block body %}
+<div class="container" style="margin-top:10%; margin-bottom:2%;">
+    <h2 align="center" style="font-weight:bold; font-family:roman">Prescriptions for {{ patient.user.username }}</h2>
+    <hr/>
+
+    <h3>Prescriptions by Dr. {{ doctor.user.username }}</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Prescription</th>
+                <th scope="col">Date Issued</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for prescription in prescriptions %}
+            <tr>
+                <td>{{ prescription.prescription_text }}</td>
+                <td>{{ prescription.date_issued|date:"Y-m-d H:i" }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="2">No prescriptions found.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{% url 'doctor_home' %}" class="btn btn-primary">Back to Dashboard</a>
+</div>
+{% endblock %}

@@ -1,0 +1,171 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block body %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Heart Disease Information</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+ <style>
+    body, html {
+        font-family: 'Nunito', sans-serif;
+        background-color: #f8f9fa;
+    }
+
+    .navbar-custom {
+        background-color: #007bff;
+        padding: 10px;
+        border-radius: 5px;
+        margin-bottom: 20px;
+    }
+
+    .navbar-custom .nav-link {
+        color: white;
+        transition: color 0.3s ease;
+    }
+
+    .navbar-custom .nav-link:hover,
+    .navbar-custom .nav-link.active {
+        color: #ffd700;
+        font-weight: bold;
+    }
+
+    .content-section {
+        padding: 20px;
+        background: white;
+        border-radius: 5px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+
+    h1, h2 {
+        color: #007bff;
+    }
+
+    p {
+        font-size: 16px;
+        color: #333;
+        line-height: 1.6;
+    }
+
+    ::-webkit-scrollbar {
+        width: 5px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: #007bff;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: #0056b3;
+    }
+</style>
+
+<div class="container-fluid pt-4">
+    <div class="row">
+        <div class="col-md-3">
+            <!-- Navigation Bar -->
+            <nav class="navbar navbar-custom flex-column">
+                <a href="#" class="navbar-brand mb-3">Heart Disease Info</a>
+                <nav class="nav nav-pills flex-column">
+                    <a href="#overview" class="nav-link">Overview</a>
+                    <a href="#types" class="nav-link">Types</a>
+                    <a href="#risk" class="nav-link">Risk Factors</a>
+                    <a href="#symptoms" class="nav-link">Symptoms</a>
+                    <a href="#diagnosis" class="nav-link">Diagnosis</a>
+                    <a href="#treatment" class="nav-link">Treatment</a>
+                    <a href="#prevention" class="nav-link">Prevention</a>
+                    <a href="#lifestyle" class="nav-link">Lifestyle Management</a>
+                    <a href="#complications" class="nav-link">Complications</a>
+                    <a href="#research" class="nav-link">Research & Innovations</a>
+                </nav>
+            </nav>
+        </div>
+      <div class="col-md-9">
+        <!-- Headings Section -->
+        <section>
+          <h1 class="text-center mb-4">Heart Disease Information</h1>
+          <div class="list-group">
+            <a href="#overview" class="list-group-item list-group-item-action">Overview</a>
+            <a href="#types" class="list-group-item list-group-item-action">Types</a>
+            <a href="#risk" class="list-group-item list-group-item-action">Risk Factors</a>
+            <a href="#symptoms" class="list-group-item list-group-item-action">Symptoms</a>
+            <a href="#diagnosis" class="list-group-item list-group-item-action">Diagnosis</a>
+            <a href="#treatment" class="list-group-item list-group-item-action">Treatment</a>
+            <a href="#prevention" class="list-group-item list-group-item-action">Prevention</a>
+            <a href="#lifestyle" class="list-group-item list-group-item-action">Lifestyle Management</a>
+            <a href="#complications" class="list-group-item list-group-item-action">Complications</a>
+            <a href="#research" class="list-group-item list-group-item-action">Research & Innovations</a>
+          </div>
+        </section>
+
+        <div class="container mt-5">
+    <section id="overview">
+      <h2>Overview of Heart Disease</h2>
+      <p>Heart disease refers to a range of conditions that affect the heart's structure and function. It is often used interchangeably with the term cardiovascular disease, which encompasses conditions affecting the heart and blood vessels. Heart disease is a leading cause of morbidity and mortality worldwide, accounting for millions of deaths each year. It includes conditions such as coronary artery disease (CAD), heart failure, arrhythmias, valvular heart disease, and congenital heart defects. These conditions can significantly impact an individual's quality of life and may require lifelong management and treatment.</p>
+    </section>
+
+    <section id="types">
+      <h2>Types of Heart Disease</h2>
+      <p>Heart disease encompasses a diverse range of conditions, each with its unique characteristics and implications. Coronary artery disease (CAD) is the most common type and occurs when the blood vessels supplying the heart muscle become narrowed or blocked, leading to chest pain or heart attack. Heart failure occurs when the heart cannot pump enough blood to meet the body's needs, resulting in symptoms such as fatigue, shortness of breath, and swelling. Arrhythmias are abnormalities in the heart's rhythm, while valvular heart disease affects the heart valves' function. Congenital heart defects are structural abnormalities present at birth, affecting the heart's chambers, valves, or blood vessels.</p>
+    </section>
+
+    <section id="risk">
+      <h2>Risk Factors for Heart Disease</h2>
+      <p>Several risk factors contribute to the development of heart disease, including modifiable and non-modifiable factors. Modifiable risk factors include unhealthy lifestyle choices such as smoking, poor diet, physical inactivity, and excessive alcohol consumption. Hypertension, high cholesterol levels, and diabetes are also significant risk factors that can be managed through lifestyle modifications and medication. Non-modifiable risk factors include age, family history of heart disease, gender, and ethnicity. Understanding and addressing these risk factors are crucial for preventing heart disease and promoting cardiovascular health.</p>
+    </section>
+
+    <section id="symptoms">
+      <h2>Symptoms of Heart Disease</h2>
+      <p>The symptoms of heart disease can vary depending on the specific condition and its severity. Common symptoms include chest pain or discomfort (angina), which may radiate to the arms, shoulders, back, neck, or jaw. Shortness of breath, especially during physical activity or when lying down, is another hallmark symptom of heart disease. Fatigue, weakness, palpitations, dizziness, or fainting may also occur, particularly with arrhythmias or heart failure. Swelling in the legs, ankles, or feet may indicate fluid retention, a common symptom of heart failure. Recognizing these symptoms is essential for early detection and timely intervention.</p>
+    </section>
+
+    <section id="diagnosis">
+      <h2>Diagnosis of Heart Disease</h2>
+      <p>Diagnosing heart disease typically involves a combination of medical history, physical examination, and diagnostic tests. During a physical examination, healthcare providers may listen to the heart and lungs, check blood pressure, and assess for signs of heart disease. Diagnostic tests such as electrocardiogram (ECG or EKG), echocardiogram, stress test, cardiac catheterization, and imaging techniques like MRI or CT scan can provide detailed information about the heart's structure and function. These tests help healthcare professionals accurately diagnose heart disease and develop an appropriate treatment plan.</p>
+    </section>
+
+    <section id="treatment">
+      <h2>Treatment Options for Heart Disease</h2>
+      <p>Treatment for heart disease aims to relieve symptoms, improve quality of life, and reduce the risk of complications. Lifestyle modifications such as adopting a heart-healthy diet, engaging in regular exercise, quitting smoking, and managing stress are fundamental components of treatment. Medications such as statins, beta-blockers, ACE inhibitors, and diuretics may be prescribed to control blood pressure, cholesterol levels, and heart rhythm abnormalities. In more severe cases, surgical interventions such as angioplasty, bypass surgery, valve repair or replacement, or implantation of devices like pacemakers or defibrillators may be necessary to restore normal heart function.</p>
+    </section>
+
+    <section id="prevention">
+      <h2>Prevention of Heart Disease</h2>
+      <p>Prevention plays a crucial role in reducing the burden of heart disease and promoting cardiovascular health. Adopting a healthy lifestyle that includes regular physical activity, maintaining a balanced diet rich in fruits, vegetables, whole grains, and lean proteins, and avoiding tobacco and excessive alcohol consumption can significantly reduce the risk of heart disease. Managing and controlling modifiable risk factors such as hypertension, high cholesterol, and diabetes through medication and regular health monitoring are also essential. Regular health check-ups and screenings can help identify risk factors early and enable timely intervention.</p>
+    </section>
+
+    <section id="lifestyle">
+      <h2>Living with Heart Disease: Lifestyle Management</h2>
+      <p>Living with heart disease requires ongoing management and lifestyle adjustments to optimize health and well-being. Adherence to prescribed medications, including blood thinners, antiplatelet agents, and medications to control blood pressure and cholesterol, is essential to prevent complications and improve outcomes. Participating in cardiac rehabilitation programs can help individuals recover from heart events, improve physical fitness, and learn strategies for managing heart disease effectively. Emotional and psychological support, including counseling, support groups, and resources for patients and caregivers, can also play a vital role in coping with the challenges of living with heart disease.</p>
+    </section>
+
+    <section id="complications">
+      <h2>Complications of Heart Disease</h2>
+      <p>Heart disease can lead to various complications that significantly impact an individual's health and quality of life. Heart attack (myocardial infarction) occurs when blood flow to a part of the heart muscle is blocked, resulting in tissue damage and potentially life-threatening complications. Stroke, a condition characterized by a disruption of blood flow to the brain, is another serious complication of heart disease. Heart rhythm problems (arrhythmias), heart failure, and sudden cardiac arrest are other potential complications that can occur due to underlying heart disease. Timely diagnosis, treatment, and ongoing management are essential for preventing and minimizing these complications.</p>
+    </section>
+
+    <section id="research">
+      <h2>Research and Innovations in Heart Disease Treatment</h2>
+      <p>Ongoing research and advancements in the field of cardiology continue to drive innovations in heart disease treatment and management. Clinical trials and research studies explore new therapeutic approaches, medications, and interventions aimed at improving outcomes and reducing the burden of heart disease. Advances in medical technology, including minimally invasive procedures, implantable devices, and imaging techniques, have revolutionized the diagnosis and treatment of heart disease. Promising areas of research include stem cell therapy, gene therapy, and precision medicine approaches tailored to individual patient profiles. Collaboration between healthcare professionals, researchers, and industry partners is crucial for translating scientific discoveries into clinical practice and improving patient care.</p>
+    </section>
+  </div>
+        <!-- Repeat similar sections for other headings -->
+
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript for Bootstrap -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>
+{% endblock %}

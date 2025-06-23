@@ -1,0 +1,71 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block body %}
+<!-- Alert for Successful Update -->
+{% if terror == "create" %}
+<script>
+    alert('Detail Updated Successfully');
+    window.location="{% url 'profile_doctor' %}";
+</script>
+{% endif %}
+
+<section class="py-5 bg-light">
+    <div class="container py-xl-5 py-lg-3">
+        <div class="title-section mb-4">
+            <h3 class="text-uppercase text-dark font-weight-bold">Update My Detail</h3>
+            <hr/>
+        </div>
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <form action="" method="post" enctype="multipart/form-data" class="bg-white shadow rounded p-4">
+                    {% csrf_token %}
+                    <div class="form-row mb-3">
+                        <div class="col-md-6">
+                            <label>First Name</label>
+                            <input type="text" class="form-control" value="{{doc.user.first_name}}" name="fname" placeholder="First Name" required="">
+                        </div>
+                        <div class="col-md-6">
+                            <label>Last Name</label>
+                            <input type="text" class="form-control" value="{{doc.user.last_name}}" name="lname" placeholder="Last Name" required="">
+                        </div>
+                    </div>
+                    <div class="form-row mb-3">
+                        <div class="col-md-6">
+                            <label>Email</label>
+                            <input type="email" class="form-control" value="{{doc.user.email}}" name="email" placeholder="Enter Email" required="">
+                        </div>
+                        <div class="col-md-6">
+                            <label>Contact</label>
+                            <input type="text" class="form-control" name="contact" value="{{doc.contact}}" placeholder="Enter Contact" required="">
+                        </div>
+                    </div>
+                    {% if error != "pat" %}
+                    <div class="form-row mb-3">
+                        <div class="col-md-12">
+                            <label>Specialist</label>
+                            <input name="type" class="form-control" value="{{doc.category}}">
+                        </div>
+                    </div>
+                    {% endif %}
+                    <div class="form-row mb-3">
+                        <div class="col-md-6">
+                            <label class="mb-2">City</label>
+                            <input type="text" class="form-control" value="{{doc.address}}" name="add" placeholder="Enter Address" required="">
+                        </div>
+                        <div class="col-md-4">
+                            <label>Image</label>
+                            <input type="file" class="form-control-file" name="image">
+                        </div>
+                        <div class="col-md-2 d-flex align-items-center justify-content-center">
+                            <img src="{{doc.image.url}}" alt="doctor-image" class="img-fluid img-thumbnail" style="max-height: 150px;">
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary mt-2">Update Detail</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

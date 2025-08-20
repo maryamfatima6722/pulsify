@@ -2,8 +2,8 @@
 {% load static %}
 {% block body %}
 
-<div class="container mt-5">
-    <h2 class="mb-4 text-center">All Available Doctor Slots</h2>
+<div class="containerdoctor mt-5">
+    <h4 class="mb-4 text-center">All Available Doctor Slots</h4>
     {% if availabilities %}
         <div class="list-group">
             {% for availability in availabilities %}
@@ -30,7 +30,7 @@
 </div>
 
 <style>
-    .container {
+    .containerdoctor {
         background-color: #f8f9fa;
         border-radius: 10px;
         padding: 30px;

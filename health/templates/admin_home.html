@@ -34,8 +34,8 @@
         margin-top: 10px;
     }
     .card-header, .card-footer {
-        background-color: #007bff;
-        color: white;
+        background-color: #c83a67;
+        color: white; 
     }
     .btn {
         margin-right: 5px;
@@ -114,8 +114,8 @@
 
 <div class="container-fluid mt-5">
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <h1 class="font-weight-bold" style="font-family: 'Roman', serif;">ADMIN DASHBOARD</h1>
-        <div class="notification">
+        <h3 class="font-weight-bold" style="font-family: 'Roman', serif;">ADMIN DASHBOARD</h3>
+        <!-- <div class="notification">
             <i class="fas fa-bell fa-2x text-dark" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
             {% if contact_msgs_count > 0 %}
                 <span class="badge">{{ contact_msgs_count }}</span>
@@ -134,7 +134,7 @@
                     <div class="dropdown-item">No new messages</div>
                 {% endif %}
             </div>
-        </div>
+        </div> -->
     </div>
     <hr class="rounded">
 
@@ -145,7 +145,7 @@
                     <div class="card-body d-flex flex-column justify-content-center">
                         <h3 class="font-weight-bold" style="font-size: 35px;">{{ doc_count }}</h3>
                         <h4 class="font-weight-bold">Total Doctors</h4>
-                        <p class="text-muted">All access are given.</p>
+                        <p class="text-muted">Admin can view doctors detail.</p>
                     </div>
                 </div>
             </a>
@@ -156,7 +156,7 @@
                     <div class="card-body d-flex flex-column justify-content-center">
                         <h3 class="font-weight-bold" style="font-size: 35px;">{{ pat_count }}</h3>
                         <h4 class="font-weight-bold">Total Patients</h4>
-                        <p class="text-muted">All access are given.</p>
+                        <p class="text-muted">Admin can see patients. </p>
                     </div>
                 </div>
             </a>
@@ -167,7 +167,7 @@
                     <div class="card-body d-flex flex-column justify-content-center">
                         <h3 class="font-weight-bold" style="font-size: 35px;">{{ feed_count }}</h3>
                         <h4 class="font-weight-bold">Total Feedback</h4>
-                        <p class="text-muted">All access are given.</p>
+                        <p class="text-muted">Your feedback matters.</p>
                     </div>
                 </div>
             </a>
@@ -178,7 +178,7 @@
                     <div class="card-body d-flex flex-column justify-content-center">
                         <h3 class="font-weight-bold" style="font-size: 35px;">{{ dis_count }}</h4>
                         <h4 class="font-weight-bold">Searched Quantity</h4>
-                        <p class="text-muted">All access are given.</p>
+                        <p class="text-muted">Amount of data searched.</p>
                     </div>
                 </div>
             </a>
@@ -195,14 +195,15 @@
     </div>
 
     <div class="mt-5">
-        <h3 class="text-center">Appointment Requests</h3>
+        <h4 class="text-center">Appointment Requests</h4>
         {% if appointments %}
             <div class="row">
                 {% for appointment in appointments %}
                     <div class="col-md-4 mb-4">
                         <div class="card h-100">
                             <div class="card-header">
-                                Appointment ID: {{ appointment.id }}
+                             <p>See your appoitment details.</p>
+                                <!-- {{ appointment.id }} -->
                             </div>
                             <div class="card-body">
                                 <h5 class="card-title">{{ appointment.doctor.user.get_full_name }}</h5>
@@ -252,12 +253,11 @@
 </div>
 
 <script>
-    // Sample data, replace with your own dynamic data
     const doctorData = {
-        labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
+        labels: ['Week 1', 'Week 2', 'Week 3','Week 4', 'Week 5'],
         datasets: [{
-            label: 'Patients Checked',
-            data: [12, 19, 3, 5],
+            label: 'Patients Checked by our Expert Maryam and Kiran and Maryam.',
+            data: [12, 19, 3, 7, 11 ],
             backgroundColor: 'rgba(75, 192, 192, 0.2)',
             borderColor: 'rgba(75, 192, 192, 1)',
             borderWidth: 1
@@ -265,10 +265,10 @@
     };
 
     const patientData = {
-        labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
+        labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4' ],
         datasets: [{
-            label: 'Searches Conducted',
-            data: [7, 11, 5, 8],
+            label: 'Total Searches Conducted in whole project PULSIFY',
+            data: [7, 11, 5, 12],
             backgroundColor: 'rgba(153, 102, 255, 0.2)',
             borderColor: 'rgba(153, 102, 255, 1)',
             borderWidth: 1

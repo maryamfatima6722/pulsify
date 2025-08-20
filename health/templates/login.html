@@ -39,15 +39,16 @@
                             <div class="form-group">
                                 <label class="font-weight-bold" for="username">Username</label>
                                 <input type="text" class="form-control" id="username" name="uname" placeholder="Enter Username" required>
-                                <small id="usernameHelp" class="form-text text-muted">We'll never share your details with anyone else.</small>
+                                <small id="usernameHelp" class="form-text text-muted">We will never share your details.</small>
                             </div>
                             <div class="form-group">
                                 <label class="font-weight-bold" for="password">Password</label>
                                 <input type="password" class="form-control" id="password" name="pwd" placeholder="Enter Your Password" required>
+                                <small id="usernameHelp" class="form-text text-muted">Password is hidden for a reason.</small>
                             </div>
                             <button type="submit" class="btn btn-primary btn-block">Login</button>
                             <p class="text-center mt-3">
-                                <a href="{% url 'signup' %}" class="text-decoration-none">Incase you Don't have an Account? Register here</a>
+                                <a href="{% url 'signup' %}" class="text-decoration-none">If you don't have an Account? Register here</a>
                             </p>
                         </form>
                     </div>

@@ -317,7 +317,7 @@ $(document).ready(function() {
 					<div class="nav_w3ls" style="margin-right: 4%;">
   <nav style="background: #DF4879; padding: 0.5rem 0;">
     <div class="container-fluid" style="width: 100%;">
-        <div class="header d-flex justify-content-between align-items-center" style="max-width: 1000px; width: 90%; margin: 0 auto;">
+        <div class="header d-flex justify-content-between align-items-center" style="max-width: 800px; width: 90%; margin: 0 auto;">
             <label for="drop1" class="toggle" style="margin-right: 1rem;">&#9776; Menu</label>
             <input type="checkbox" id="drop1" style="display: none;" />
             
@@ -342,9 +342,7 @@ $(document).ready(function() {
                 <li class="mx-lg-4 mx-md-3 my-md-0 my-2">
                     <a href="/view_feedback" class="{% if request.path == '/view_feedback' %}active{% endif %}" style="text-decoration: none; padding: 5px 10px;">Feedback</a>
                 </li>
-                <!-- <li class="mx-lg-4 mx-md-3 my-md-0 my-2">
-                    <a href="{% url 'doctor_reports' %}" class="{% if request.resolver_match.url_name == 'doctor_reports' %}active{% endif %}" style="text-decoration: none; padding: 5px 10px;">Doctor Reports</a>
-                </li> -->
+            
                
             </ul>
         </div>
@@ -353,7 +351,7 @@ $(document).ready(function() {
 
 
 <style>
-    /* General Navigation Bar Styles */
+   
     nav {
         background: #DF4879;
         padding: 0.5rem 0;

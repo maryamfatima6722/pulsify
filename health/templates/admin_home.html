@@ -34,7 +34,7 @@
         margin-top: 10px;
     }
     .card-header, .card-footer {
-        background-color: #c83a67;
+        background-color: #fa4f85;
         color: white; 
     }
     .btn {
@@ -115,26 +115,6 @@
 <div class="container-fluid mt-5">
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h3 class="font-weight-bold" style="font-family: 'Roman', serif;">ADMIN DASHBOARD</h3>
-        <!-- <div class="notification">
-            <i class="fas fa-bell fa-2x text-dark" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
-            {% if contact_msgs_count > 0 %}
-                <span class="badge">{{ contact_msgs_count }}</span>
-            {% endif %}
-            <div class="dropdown-menu dropdown-menu-end p-2">
-                <h6 class="dropdown-header">Contact Messages</h6>
-                {% for message in contact_msgs %}
-                    <div class="dropdown-item">
-                        <strong>{{ message.name }}</strong><br>
-                        <small>{{ message.email }}</small><br>
-                        <p>{{ message.message|truncatewords:10 }}</p>
-                    </div>
-                    <div class="dropdown-divider"></div>
-                {% endfor %}
-                {% if contact_msgs_count == 0 %}
-                    <div class="dropdown-item">No new messages</div>
-                {% endif %}
-            </div>
-        </div> -->
     </div>
     <hr class="rounded">
 
@@ -202,8 +182,8 @@
                     <div class="col-md-4 mb-4">
                         <div class="card h-100">
                             <div class="card-header">
-                             <p>See your appoitment details.</p>
-                                <!-- {{ appointment.id }} -->
+                             <p style="color: black;">See your appoitment details.</p>
+                        
                             </div>
                             <div class="card-body">
                                 <h5 class="card-title">{{ appointment.doctor.user.get_full_name }}</h5>

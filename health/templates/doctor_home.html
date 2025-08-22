@@ -39,7 +39,7 @@
                             {% if appointment.status == 'confirmed' %}
                             <a href="https://wa.me/{{ appointment.patient.contact }}" target="_blank" class="btn btn-success btn-sm">Contact via WhatsApp</a>
                             {% endif %}
-                            <a href="{% url 'view_prescriptions' appointment.patient.id appointment.doctor.id %}" class="btn btn-info btn-sm">View Prescriptions</a>
+                            <!-- <a href="{% url 'view_prescriptions' appointment.patient.id appointment.doctor.id %}" class="btn btn-info btn-sm">View Prescriptions</a> -->
                         </td>
                     </tr>
                     {% empty %}

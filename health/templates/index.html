@@ -43,21 +43,19 @@
     }
     </script>
 	<style>
-        /* Navigation Link - Hover Effect */
+       
         .menu a:hover {
             background-color: #bf395f; 
             color: #fff !important;
             border-radius: 5px;
         }
-
-        /* Active Page Indicator */
         .menu .active {
             background-color: #c74367; 
             color: #ffffff !important;
             border-radius: 5px; 
         }
 
-        /* Navigation and Dropdown Menu Styles */
+    
         .menu {
             padding: 15px;
             width: 100%;
@@ -83,28 +81,10 @@
             padding: 0.5rem 1rem;
         }
 
-        /* Responsive Menu Toggle */
-        .toggle {
-            color: rgb(101, 22, 174);
-            font-size: 1.5rem;
-            cursor: pointer;
-            display: none;
-        }
 
-        @media (max-width: 768px) {
-            .toggle {
-                display: block;
-            }
 
-            .menu {
-                flex-direction: column;
-                display: none;
-            }
 
-            .dropdown-menu {
-                position: static;
-            }
-        }
+
     </style>
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
@@ -127,9 +107,6 @@
 <link rel="stylesheet" href="{% static 'assets/css/custom.css' %}">
 <link rel="stylesheet" href="{% static 'assets/css/mobile.css' %}">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-
-
-	<!--Template style -->
 <link rel="stylesheet" type="text/css" href="{% static 'assets/css/animate.css' %}" />
 <link rel="stylesheet" type="text/css" href="{% static 'assets/css/animate.min.css' %}" />
 <link rel="stylesheet" type="text/css" href="{% static 'assets/css/bootstrap.min.css' %}" />
@@ -142,8 +119,6 @@
 <link rel="stylesheet" type="text/css" href="{% static 'assets/css/style.css' %}" />
 <link rel="stylesheet" type="text/css" href="{% static 'assets/css/responsive.css' %}" />
 <link rel="shortcut icon" type="image/png" href="{% static 'assets/images/fav-icon.png' %}" />
-
-	<!-- Web-Fonts -->
 	<link href="//fonts.googleapis.com/css?family=Quicksand:300,400,500,700" rel="stylesheet">
 	<link href="//fonts.googleapis.com/css?family=Mukta:200,300,400,500,600,700,800&amp;subset=devanagari,latin-ext" rel="stylesheet">
 <style>
@@ -153,7 +128,7 @@
 	}
 </style>
 <style>
-        /* Custom CSS for footer */
+        
         .footer {
             background-color: green;
             color: white; 
@@ -182,27 +157,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
 <script src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.html5.min.js"></script>
-<script>
-    document.querySelector('#drop1').addEventListener('change', function() {
-        const menu = document.querySelector('.menu');
-        menu.style.display = this.checked ? 'block' : 'none';
-    });
 
-    document.querySelectorAll('.toggle.toogle-2').forEach(function(toggle) {
-        toggle.nextElementSibling.style.display = 'none'; // Initial state
-        toggle.addEventListener('click', function() {
-            let input = document.getElementById(toggle.htmlFor);
-            input.checked = !input.checked;
-            input.dispatchEvent(new Event('change'));
-        });
-    });
-
-    document.querySelectorAll('#drop-2').forEach(function(drop) {
-        drop.addEventListener('change', function() {
-            this.nextElementSibling.style.display = this.checked ? 'block' : 'none';
-        });
-    });
-</script>
 <script>
 $(document).ready(function() {
     $('#example').DataTable( {
@@ -219,7 +174,7 @@ $(document).ready(function() {
 </head>
 
 <body>
-	<!-- main -->
+	
 	<div id="home" style="margin-bottom:2%">
 		<!-- top header -->
 		 <div class="main-header-wrapper float_left">
@@ -296,7 +251,7 @@ $(document).ready(function() {
                </div>
             </div>
          </div>
-		<!-- //top header -->
+	
 
 		<!-- second header -->
 		<div class="top" style="background:#DF4879">
@@ -311,18 +266,21 @@ $(document).ready(function() {
                     </a>
                 </h1>
             </div>
-					<!-- //logo -->
+			
 					<!-- nav -->
 					{% if request.user.is_staff %}
 					<div class="nav_w3ls" style="margin-right: 4%;">
-  <nav style="background: #DF4879; padding: 0.5rem 0;">
+  <nav style="background: #DF4879; padding: 0.1rem 0;">
     <div class="container-fluid" style="width: 100%;">
-        <div class="header d-flex justify-content-between align-items-center" style="max-width: 800px; width: 90%; margin: 0 auto;">
+        <div class="header d-flex justify-content-between align-items-center" 
+        style="max-width: 800px;
+         width: 90%; 
+         margin: 0 auto;">
             <label for="drop1" class="toggle" style="margin-right: 1rem;">&#9776; Menu</label>
             <input type="checkbox" id="drop1" style="display: none;" />
             
-            <ul class="menu" style="
-                list-style: none;
+            <ul class="menu"
+             style="list-style: none;
                 display: flex;
                 flex-wrap: nowrap;
                 justify-content: flex-start;
@@ -491,7 +449,7 @@ $(document).ready(function() {
 							<input type="checkbox" id="drop2" />
 							<ul class="menu">
 								<li class="mx-lg-4 mx-md-3 my-md-0 my-2" style="background:red;padding:8px">
-									<!-- First Tier Drop Down -->
+							
 									<label for="drop-2" class="toggle toogle-2"> <span class="fa fa-angle-down" aria-hidden="true"></span>
 									</label>
 									<a href="#"><i class="fa fa-user"></i> {{request.user.username}} <span class="fa fa-angle-down" aria-hidden="true"></span></a>
@@ -671,7 +629,7 @@ $(document).ready(function() {
 </nav>
 
 <style>
-    /* General Navigation Bar Styles */
+
     nav {
         background: #DF4879;
         padding: 10px 0;
@@ -867,13 +825,9 @@ $(document).ready(function() {
 						</nav>
 					</div>
 					{% endif %}
-
-
-					<!-- //nav -->
 				</div>
 			</div>
 		</div>
-		<!-- //second header -->
 
 		<!-- banner -->
 		{% block body %}
@@ -881,9 +835,6 @@ $(document).ready(function() {
 		<!-- //banner -->
 	</div>
 	<!-- //main -->
-
-
-
 <div class="footer-main-wrapper">
    <div class="container">
       <div class="row">
@@ -934,7 +885,7 @@ $(document).ready(function() {
                </ul>
             </div>
          </div>
-         Column 3: Opening Hours and Newsletter
+         <!-- Column 3: Opening Hours and Newsletter -->
          <div class="col-lg-4 col-md-6 col-sm-12 col-12">
             <div class="time-wrapper">
                <div class="opening-hours">
@@ -1103,7 +1054,6 @@ $(document).ready(function() {
 	
 
 </body>
-<!-- Side Panel -->
 <script src="{% static 'assets/js/jquery-3.6.0.min.js' %}"></script>
 <script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
 <script src="{% static 'assets/js/wow.js' %}"></script>
@@ -1111,8 +1061,6 @@ $(document).ready(function() {
 <script src="{% static 'assets/js/owl.carousel.min.js' %}"></script>
 <script src="{% static 'assets/js/contact_form.js' %}"></script>
 <script src="{% static 'assets/js/custom.js' %}"></script>
-<!-- custom js -->
-
 
  <script>
       wow = new WOW(

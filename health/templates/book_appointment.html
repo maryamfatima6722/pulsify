@@ -11,7 +11,7 @@
             on <strong>{{ availability.get_day_display }} from {{ availability.start_time|time:"P" }} to {{ availability.end_time|time:"P" }}</strong>.
             <p>Fee: <strong>RS{{ availability.fee }}</strong></p>
             <p>Location: <strong>{{ availability.doctor.address }}</strong></p>
-            <p>To pay the fee, please send the amount to this Easypaisa account: <strong>03466722783</strong>.</p>
+            <p>To pay the fee please send the amount to this Easypaisa account: <strong>03466722783</strong>.</p>
         </div>
         <input type="hidden" name="availability_id" value="{{ availability.id }}">
         <button type="submit" class="btn btn-primary">Confirm Appointment</button>
